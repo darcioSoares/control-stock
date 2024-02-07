@@ -24,16 +24,96 @@ new class extends Component
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <!-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> -->
+                        <img src="{{ asset('img/smartsim.png') }}" width="250" height="200" alt="smartsim">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    <!-- removido -->
                 </div>
+            </div>
+
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
+
+                <x-dropdown align="left" width="48">
+                        <x-slot name="trigger">
+
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+
+                        @php
+                            $currentRoute = \Route::current();
+                            $uriSegments = explode('/', $currentRoute->uri());
+                            $firstSegment = reset($uriSegments);
+                        @endphp
+
+                        <x-nav-link  >
+                            <h1>Lotes</h1>
+                        </x-nav-link>
+
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </button>
+
+                        </x-slot>
+
+                        <x-slot name="content">
+
+
+                            <x-dropdown-link href="{{ route('batch.create') }}"   class="hover:bg-green-400">
+                                Cadastrar
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('batch.list')}}"  class="hover:bg-green-400">
+                                Lista
+                            </x-dropdown-link>
+                            <x-dropdown-link href="#"   class="hover:bg-green-400">
+                                #Relatorios
+                            </x-dropdown-link>
+
+                        </x-slot>
+                </x-dropdown>
+
+                <x-dropdown align="left" width="48">
+                        <x-slot name="trigger">
+
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+
+                        @php
+                            $currentRoute = \Route::current();
+                            $uriSegments = explode('/', $currentRoute->uri());
+                            $firstSegment = reset($uriSegments);
+                        @endphp
+
+                        <x-nav-link  >
+                            <h1>Fornecedor</h1>
+                        </x-nav-link>
+
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </button>
+
+                        </x-slot>
+
+                        <x-slot name="content">
+
+
+                            <x-dropdown-link href="{{ route('supplier.create') }}"  class="hover:bg-green-400">
+                                Cadastrar
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('supplier.list') }}"   class="hover:bg-green-400">
+                                Lista
+                            </x-dropdown-link>
+
+                        </x-slot>
+                </x-dropdown>
+
             </div>
 
             <!-- Settings Dropdown -->
